@@ -1,0 +1,82 @@
+HP-2920-24G# show config
+
+Startup configuration: 26
+
+; J9727A Configuration Editor; Created on release #WB.16.10.0025
+; Ver #14:21.44.08.15.9b.3f.b3.b8.ee.34.79.3c.29.eb.9f.fc.f3.ff.37.ef:29
+
+hostname "HP-2920-24G"
+module 1 type j9727a
+timesync ntp
+ntp server fd00:1::a iburst
+ntp server fd00:1::b iburst
+ntp server-name "tick.cit.lcl"
+ntp server-name "tock.cit.lcl"
+time timezone -240
+ip dns server-address priority 1 fd00:1::a
+ip dns server-address priority 2 fd00:1::b
+ipv6 route ::/0 fd00:c345:13:0:1:0:1:5
+ipv6 unicast-routing
+interface 1
+   name "HP-2920-48G_TRUNK"
+   exit
+interface 2
+   name "Cisco-3750A_TRUNK"
+   exit
+interface 24
+   name "ISRD_UPLINK"
+   exit
+snmp-server community "public" unrestricted
+snmp-server community "CIT-SNMP" operator
+snmp-server contact "Lindsay Keough" location "Area13_Switch"
+oobm
+   ip address dhcp-bootp
+   exit
+vlan 1
+   name "DEFAULT_VLAN"
+   no untagged 4-9
+   untagged 2-3,10-24
+   tagged 1
+   no ip address
+   ipv6 address fe80::2 link-local
+   ipv6 address fd00:c345:13:0:1:0:13:6/112
+   ipv6 helper-address unicast fd00:c345:13::1:0:1
+   exit
+vlan 1301
+   name "VLAN1301"
+   untagged 4-5
+   tagged 1
+   no ip address
+   ipv6 address fd00:c345:13:0:1:0:1:6/112
+   ipv6 nd ra managed-config-flag
+   ipv6 helper-address unicast fd00:c345:13::1:0:1
+   exit
+vlan 1302
+   name "VLAN1302"
+   untagged 6-7
+   tagged 1
+   no ip address
+   ipv6 address fd00:c345:13:0:1:0:2:6/112
+   ipv6 helper-address unicast fd00:c345:13::1:0:1
+   exit
+vlan 1303
+   name "VLAN1303"
+   untagged 8-9
+   tagged 1
+   no ip address
+   ipv6 address fd00:c345:13:0:1:0:3:6/112
+   ipv6 helper-address unicast fd00:c345:13::1:0:1
+   exit
+spanning-tree 3 admin-edge-port
+spanning-tree 4 admin-edge-port
+spanning-tree 5 admin-edge-port
+spanning-tree 6 admin-edge-port
+spanning-tree 7 admin-edge-port
+spanning-tree 8 admin-edge-port
+spanning-tree 9 admin-edge-port
+spanning-tree 10 admin-edge-port
+spanning-tree config-revision 13
+dhcpv6-relay
+password manager
+
+HP-2920-24G#

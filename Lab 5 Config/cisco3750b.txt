@@ -1,0 +1,347 @@
+
+cisco3750b#show running-config
+Building configuration...
+
+Current configuration : 9081 bytes
+!
+! Last configuration change at 11:32:50 EST Wed Jan 4 2006
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname cisco3750b
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+clock timezone EST -4 0
+switch 1 provision ws-c3750x-48p
+system mtu routing 1500
+!
+!
+!
+!
+ip routing
+!
+!
+ip domain-name g13
+ip name-server FD00:1::A
+ip name-server FD00:1::B
+ipv6 unicast-routing
+vtp mode transparent
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-257939584
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-257939584
+ revocation-check none
+ rsakeypair TP-self-signed-257939584
+!
+!
+crypto pki certificate chain TP-self-signed-257939584
+ certificate self-signed 01
+  30820229 30820192 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32353739 33393538 34301E17 0D303630 31303230 30303230
+  305A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3235 37393339
+  35383430 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100
+  A5AF095E 0856BF86 728B36E1 4EE087B3 97BD8960 E76CD2F1 315CD3AC E8E26FE5
+  5D37017B D2746F6B E89182E5 7A07AC25 42CAA753 C98B51BC 8AE58373 5C125D4E
+  88F64349 7FB5068D C518DA52 A1AE2580 516EF951 0F50A0C4 C4B4AF93 3EC29FDF
+  5946279C E3E934E4 C16671AC 5514DBCB FA82B0CB E355F6D6 51654963 8C32E04D
+  02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 0603551D
+  23041830 16801478 E8277FFA ADF4BF66 34E261B0 3FA583C7 4A4AAE30 1D060355
+  1D0E0416 041478E8 277FFAAD F4BF6634 E261B03F A583C74A 4AAE300D 06092A86
+  4886F70D 01010505 00038181 00A52BD4 3787DB86 5D07478C 14825A73 14AF7C83
+  8A20F123 3CE1B661 EA2A635C D4A35A74 EB700C82 4F10E353 4BFCB275 DE959EEF
+  9597B370 4FCDEBC3 3069CAED 1DBC985B 55B051B5 8CFDEB60 4B0452C9 FA5D1E52
+  E893B96D 18692314 4E300FA5 04AD9A74 56BE261F AB6010F2 757DB7E7 7FFE9ACF
+  7234469A 46FD87AF D8A2EC2B 6B
+        quit
+license boot level ipservices
+archive
+ path tftp://fd00:c345:13:0:0:7:0:12
+ write-memory
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 1301-1303
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface GigabitEthernet1/0/1
+ no switchport
+ no ip address
+ ipv6 address FD00:C345:13:B:113:1:0:2/96
+ ipv6 enable
+ ipv6 eigrp 113
+!
+interface GigabitEthernet1/0/2
+!
+interface GigabitEthernet1/0/3
+!
+interface GigabitEthernet1/0/4
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 1301
+ switchport mode access
+!
+interface GigabitEthernet1/0/6
+!
+interface GigabitEthernet1/0/7
+!
+interface GigabitEthernet1/0/8
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+!
+interface GigabitEthernet1/0/22
+!
+interface GigabitEthernet1/0/23
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface GigabitEthernet1/0/29
+!
+interface GigabitEthernet1/0/30
+!
+interface GigabitEthernet1/0/31
+!
+interface GigabitEthernet1/0/32
+!
+interface GigabitEthernet1/0/33
+!
+interface GigabitEthernet1/0/34
+!
+interface GigabitEthernet1/0/35
+!
+interface GigabitEthernet1/0/36
+!
+interface GigabitEthernet1/0/37
+!
+interface GigabitEthernet1/0/38
+!
+interface GigabitEthernet1/0/39
+!
+interface GigabitEthernet1/0/40
+!
+interface GigabitEthernet1/0/41
+!
+interface GigabitEthernet1/0/42
+!
+interface GigabitEthernet1/0/43
+!
+interface GigabitEthernet1/0/44
+!
+interface GigabitEthernet1/0/45
+!
+interface GigabitEthernet1/0/46
+!
+interface GigabitEthernet1/0/47
+!
+interface GigabitEthernet1/0/48
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/1
+!
+interface TenGigabitEthernet1/1/2
+!
+interface Vlan1
+ description Native_Management_VLAN_1
+ no ip address
+ ipv6 address FD00:C345:13:B:113:0:13:1/112
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 eigrp 113
+ ipv6 dhcp relay destination FD00:C345:13:B:113:1:0:1
+!
+interface Vlan1301
+ no ip address
+ ipv6 address FD00:C345:13:B:113:0:1:1/112
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 eigrp 113
+ ipv6 dhcp relay destination FD00:C345:13:B:113:1:0:1
+!
+interface Vlan1302
+ no ip address
+ ipv6 address FD00:C345:13:B:113:0:2:1/112
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 eigrp 113
+ ipv6 dhcp relay destination FD00:C345:13:B:113:1:0:1
+!
+interface Vlan1303
+ no ip address
+ ipv6 address FD00:C345:13:B:113:0:3:1/112
+ ipv6 enable
+ ipv6 nd managed-config-flag
+ ipv6 eigrp 113
+ ipv6 dhcp relay destination FD00:C345:13:B:113:1:0:1
+!
+ip forward-protocol nd
+!
+ip http server
+ip http secure-server
+!
+!
+ipv6 router eigrp 113
+ eigrp router-id 7.7.7.7
+ eigrp stub connected summary
+!
+!
+snmp-server community Group13 RO
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps flowmon
+snmp-server enable traps transceiver all
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps eigrp
+snmp-server enable traps tty
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specific errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps license
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps bfd
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps pki
+snmp-server enable traps trustsec authz-file-error cache-file-error keystore-file-error keystore-sync-fail random-number-fail src-entropy-fail
+snmp-server enable traps trustsec-policy peer-policy-updated authz-sgacl-fail
+snmp-server enable traps trustsec-sxp conn-srcaddr-err msg-parse-err conn-config-err binding-err conn-up conn-down binding-expn-fail oper-nodeid-change binding-conflict
+snmp-server enable traps energywise
+snmp-server enable traps fru-ctrl
+snmp-server enable traps entity
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps ike policy add
+snmp-server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec cryptomap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server enable traps ipsec tunnel stop
+snmp-server enable traps ipsec too-many-sas
+snmp-server enable traps ospfv3 state-change
+snmp-server enable traps ospfv3 errors
+snmp-server enable traps power-ethernet group 1
+snmp-server enable traps power-ethernet police
+snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+snmp-server enable traps cpu threshold
+snmp-server enable traps rep
+snmp-server enable traps ipsla
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps trustsec-interface unauthorized sap-fail authc-fail supplicant-fail authz-fail
+snmp-server enable traps trustsec-server radius-server provision-secret
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps stackwise
+snmp-server enable traps bulkstat collection transfer
+snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+snmp-server enable traps errdisable
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server host FD00:C345:13::7:0:12 version 2c Group13
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+ntp server ipv6 tick.cit.lcl
+ntp server ipv6 tock.cit.lcl
+!
+end
+
+cisco3750b#
