@@ -1,29 +1,85 @@
-# Enterprise Network Architecture & Migration
+# Enterprise Network Infrastructure
 
-### Project Overview
-This repository contains the architecture, configuration, and documentation for a highly available, multi-vendor enterprise network. The project demonstrates end-to-end network engineering, specifically focusing on the deployment and management of a dual-stack (IPv4 and IPv6) environment. It highlights the transition from and integration of legacy IPv4 setups with modern IPv6 architectures, alongside enterprise-grade monitoring and redundancy protocols.
+Summarized portfolio documentation for a **Spring 2026 Purdue University CNIT 34500** team project focused on designing, configuring, validating, and troubleshooting a multi-vendor enterprise network.
 
-### Core Technologies
-*   **Routing Protocols:** OSPFv2 (IPv4), OSPFv3 (IPv6), EIGRP, Mutual Route Redistribution, Route Summarization
-*   **Layer 2/3 Switching:** VLAN & SVI (Switched Virtual Interface) Provisioning
-*   **High Availability:** GLBP (Gateway Load Balancing Protocol)
-*   **Infrastructure & Services:** DHCP/DHCPv6, SNMP, NTP, Syslog
-*   **Network Management:** LibreNMS
-*   **Vendor Platforms:** Cisco Systems (ISRs, 3750X series), HP (48G switches), Juniper Networks 
+> This repository is a portfolio reconstruction, not a copy of the original lab submission. Credentials, private infrastructure details, raw device exports, and course-specific answer material are intentionally excluded.
 
-### Technical Achievements
-*   **Dual-Stack Infrastructure:** Engineered a seamless transit core that successfully routed both IPv4 and IPv6 traffic concurrently, ensuring legacy IPv4 system compatibility while establishing a scalable IPv6 footprint.
-*   **Multi-Vendor Integration:** Integrated Cisco and Juniper hardware, utilizing multi-area OSPFv2/OSPFv3 and EIGRP to establish scalable, loop-free routing domains. 
-*   **Advanced Route Redistribution:** Successfully configured mutual redistribution between OSPF and EIGRP domains across the dual-stack topology, ensuring full cross-network reachability and optimized routing paths.
-*   **Layer 3 Redundancy:** Deployed GLBP to provide both active gateway redundancy and dynamic load balancing, ensuring continuous network uptime for end-users during hardware failure simulations.
-*   **Infrastructure Visibility:** Provisioned LibreNMS alongside SNMP, NTP, and Syslog services to establish comprehensive monitoring, logging, and time-synchronization across all network nodes.
-*   **Technical Documentation:** Authored detailed deployment configurations, dual-stack topology diagrams, and formal recommendations to facilitate clear communication and future network scaling.
+## Project highlights
 
-### Troubleshooting & Problem Solving
-*   **DHCP & IP Allocation:** Diagnosed and resolved both IPv4 and IPv6 address assignment failures by tracing packet flows. Corrected neighbor discovery, VLAN/SVI assignments, and relay agent misconfigurations to successfully restore automated client provisioning.
-*   **Firewall Policy Alignment:** Audited and restructured firewall access control lists (ACLs) that were inadvertently dropping multi-area OSPF routing multicast traffic. Reconfigured security policies to permit dynamic routing updates while maintaining a strict, deny-by-default boundary security posture.
-*   **OSPF Route Summarization:** Identified routing table bloat and optimized network performance by implementing manual route summarization at the network boundaries for both OSPFv2 and OSPFv3. This significantly reduced processor overhead and memory utilization on the core transit routers.
+- Cisco IOS / NX-OS, Juniper Junos, and HPE switching
+- IPv4 and IPv6 routing
+- Multi-area OSPF and OSPFv3
+- EIGRP and OSPF/EIGRP route redistribution
+- VLAN segmentation and 802.1Q trunking
+- Layer 3 switching
+- HSRP and GLBP first-hop redundancy
+- DHCP / DHCP relay
+- DNS, NTP, SSH, and centralized TFTP configuration backup
+- LAN/WAN validation and cross-vendor troubleshooting
 
-### Value Proposition
-> **Business Impact:** 
-> This project demonstrates the ability to independently design, deploy, and troubleshoot complex, real-world network infrastructure. By successfully managing a dual-stack environment, prioritizing load balancing (GLBP), and proactively monitoring assets (LibreNMS), this architecture aligns with industry best practices for maintaining high-availability, fault-tolerant enterprise networks during major technology migrations.
+## Simplified architecture
+
+```mermaid
+flowchart LR
+    WAN[Upstream WAN] --> NX[Cisco Nexus Edge]
+    NX --> J[Juniper SRX]
+    J --> A[Cisco ISR-A]
+    J --> C[Cisco ISR-C]
+    A --> B[Cisco ISR-B]
+    A --> E[Cisco ISR-E]
+    C --> D[Cisco ISR-D]
+    B --> SW1[Switching Domain A]
+    E --> SW1
+    C --> SW2[Switching Domain B]
+    D --> SW2
+    SW1 --> V1[VLAN 1301]
+    SW1 --> V2[VLAN 1302]
+    SW2 --> V2
+    SW2 --> V3[VLAN 1303]
+```
+
+The original topology contained additional routed transit links and access/distribution devices; this diagram is intentionally simplified for a public portfolio.
+
+## What the project demonstrates
+
+### Routing
+OSPF provided link-state routing across the routed core, while EIGRP was used in separate routing domains. Redistribution enabled reachability between those domains. IPv6 portions of the network also used OSPFv3.
+
+### Segmentation
+VLANs separated endpoint networks, while 802.1Q trunks carried multiple VLANs across switched links. Routed VLAN interfaces and router subinterfaces provided Layer 3 connectivity.
+
+### High availability
+HSRP and GLBP were implemented during the project to provide redundant virtual default gateways for routed VLANs.
+
+### Operations
+The environment also used DHCP, DNS, NTP, SSH, and TFTP-based configuration backups, reinforcing that reliable enterprise networking depends on operational services as well as routing protocols.
+
+## Representative configs
+
+- [Cisco IOS router](configs/cisco/ios-router-sample.cfg)
+- [Cisco IOS switch](configs/cisco/ios-switch-sample.cfg)
+- [Cisco NX-OS](configs/cisco/nxos-sample.cfg)
+- [Juniper SRX](configs/juniper/srx-sample.set)
+- [HPE switch](configs/hpe/switch-sample.txt)
+
+These are **sanitized representative examples**, not raw course exports and not production-ready configurations.
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [Routing design](docs/routing-design.md)
+- [Layer 2 design](docs/layer2-design.md)
+- [Redundancy](docs/redundancy.md)
+- [Infrastructure services](docs/infrastructure-services.md)
+- [Validation](docs/validation.md)
+- [Troubleshooting](docs/troubleshooting.md)
+
+## What I learned
+
+- How to translate the same routing and switching concepts across multiple vendors.
+- How OSPF/EIGRP routing, VLANs, and first-hop redundancy interact in a larger topology.
+- Why DNS, NTP, SSH, DHCP, and configuration backups are core network operations requirements.
+
+## Academic context
+
+This was a **team-based academic implementation** completed in Spring 2026. The repository summarizes the architecture and technical work demonstrated by the project without publishing the original course submission.
