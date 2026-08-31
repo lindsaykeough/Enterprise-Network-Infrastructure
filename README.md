@@ -66,8 +66,8 @@ These are **sanitized representative examples**, not raw course exports and not 
 
 ## Documentation
 
-- [Architecture](docs/architecture.md)
-- [Routing design](docs/routing-design.md)
+- [Physical Architecture](physical_diagram.png)
+- [Logical Architecture](logical_diagram.png)
 - [Layer 2 design](docs/layer2-design.md)
 - [Redundancy](docs/redundancy.md)
 - [Infrastructure services](docs/infrastructure-services.md)
