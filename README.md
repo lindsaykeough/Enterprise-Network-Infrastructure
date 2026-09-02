@@ -1,6 +1,6 @@
 # Enterprise Network Infrastructure
 
-Summarized portfolio documentation for a **Spring 2026 Purdue University CNIT 34500** team project focused on designing, configuring, validating, and troubleshooting a multi-vendor enterprise network.
+Sanitized portfolio documentation for a **Spring 2026 Purdue University CNIT 34500** team project focused on designing, configuring, validating, and troubleshooting a multi-vendor enterprise network.
 
 > This repository is a portfolio reconstruction, not a copy of the original lab submission. Credentials, private infrastructure details, raw device exports, and course-specific answer material are intentionally excluded.
 
@@ -66,8 +66,8 @@ These are **sanitized representative examples**, not raw course exports and not 
 
 ## Documentation
 
-- [Physical Architecture](physical_diagram.png)
-- [Logical Architecture](logical_diagram.png)
+- [Architecture](docs/architecture.md)
+- [Routing design](docs/routing-design.md)
 - [Layer 2 design](docs/layer2-design.md)
 - [Redundancy](docs/redundancy.md)
 - [Infrastructure services](docs/infrastructure-services.md)
@@ -78,6 +78,7 @@ These are **sanitized representative examples**, not raw course exports and not 
 
 - How to translate the same routing and switching concepts across multiple vendors.
 - How OSPF/EIGRP routing, VLANs, and first-hop redundancy interact in a larger topology.
+- How to separate control-plane validation from data-plane testing when troubleshooting.
 - Why DNS, NTP, SSH, DHCP, and configuration backups are core network operations requirements.
 
 ## Academic context
