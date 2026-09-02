@@ -1,0 +1,14 @@
+# SANITIZED PORTFOLIO EXAMPLE
+set system host-name EDGE-SRX
+set system services ssh
+set system name-server 192.0.2.53
+set system ntp server 192.0.2.10
+set interfaces ge-0/0/0 unit 0 family inet address 10.255.0.2/30
+set interfaces ge-0/0/1 unit 0 family inet address 10.255.1.1/30
+set security zones security-zone trust interfaces ge-0/0/1.0
+set security zones security-zone trust interfaces ge-0/0/1.0 host-inbound-traffic system-services ping
+set security zones security-zone trust interfaces ge-0/0/1.0 host-inbound-traffic system-services ssh
+set security zones security-zone trust interfaces ge-0/0/1.0 host-inbound-traffic protocols ospf
+set protocols ospf area 0 interface ge-0/0/0.0
+set protocols ospf area 10 interface ge-0/0/1.0
+set routing-options router-id 10.10.10.10

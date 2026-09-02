@@ -1,0 +1,15 @@
+flowchart LR
+    WAN[Upstream WAN] --> NX[Cisco Nexus Edge]
+    NX --> J[Juniper SRX]
+    J --> A[Cisco ISR-A]
+    J --> C[Cisco ISR-C]
+    A --> B[Cisco ISR-B]
+    A --> E[Cisco ISR-E]
+    C --> D[Cisco ISR-D]
+    B --> S1[Switching A]
+    E --> S1
+    C --> S2[Switching B]
+    D --> S2
+    S1 --> V1[VLAN 1301]
+    S1 --> V2[VLAN 1302]
+    S2 --> V3[VLAN 1303]

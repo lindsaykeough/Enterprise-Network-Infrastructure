@@ -1,0 +1,15 @@
+# SANITIZED PORTFOLIO EXAMPLE
+vlan 1301
+   name "USERS_A"
+   tagged 1
+   untagged 4-5
+   exit
+vlan 1302
+   name "USERS_B"
+   tagged 1
+   untagged 6-7
+   exit
+timesync ntp
+ntp server-name time1.example.net
+ip dns server-address priority 1 192.0.2.53
+ip ssh
